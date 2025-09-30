@@ -14,7 +14,7 @@ $port = getenv('DB_PORT');
 $dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
-$caCertPath = __DIR__ . '/' . getenv('DB_SSL_CA'); // Ajusta ruta si es necesario
+$caCertPath = __DIR__ . '/ca.pem';
 
 
 try {
