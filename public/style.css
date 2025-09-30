@@ -52,53 +52,23 @@ a.nuevo:hover {
 }
 
 /* ==== Acciones ==== */
+.acciones {
+    display: flex;
+    gap: 8px;
+}
 .acciones a {
-    margin-right: 8px;
     text-decoration: none;
     padding: 6px 10px;
     border-radius: 4px;
     font-size: 14px;
 }
-
 .acciones a.editar {
     background: #ffc107;
     color: #222;
 }
-
 .acciones a.eliminar {
     background: #dc3545;
     color: white;
-}
-
-/* ==== Responsivo ==== */
-@media (max-width: 768px) {
-    .tabla, .tabla thead, .tabla tbody, .tabla th, .tabla td, .tabla tr {
-        display: block;
-        width: 100%;
-    }
-    .tabla tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 10px;
-        background: white;
-    }
-    .tabla td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
-    .tabla td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        width: 45%;
-        font-weight: bold;
-        text-align: left;
-    }
-    .tabla th {
-        display: none;
-    }
 }
 
 /* ==== Formularios ==== */
@@ -113,11 +83,9 @@ a.nuevo:hover {
     flex-direction: column;
     gap: 15px;
 }
-
 .formulario label {
     font-weight: bold;
 }
-
 .formulario input[type="text"],
 .formulario input[type="number"] {
     padding: 10px;
@@ -125,11 +93,9 @@ a.nuevo:hover {
     border-radius: 6px;
     width: 100%;
 }
-
 .formulario input[type="checkbox"] {
     margin-right: 6px;
 }
-
 .formulario button {
     padding: 10px;
     background: #28a745;
@@ -139,7 +105,6 @@ a.nuevo:hover {
     cursor: pointer;
     transition: background 0.3s;
 }
-
 .formulario button:hover {
     background: #218838;
 }
@@ -155,7 +120,50 @@ a.volver {
     border-radius: 6px;
     transition: background 0.3s;
 }
-
 a.volver:hover {
     background: #5a6268;
+}
+
+/* ==== Responsivo ==== */
+@media (max-width: 768px) {
+    /* Tabla en formato card */
+    .tabla, .tabla thead, .tabla tbody, .tabla th, .tabla td, .tabla tr {
+        display: block;
+        width: 100%;
+    }
+    .tabla tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 10px;
+        background: white;
+    }
+    .tabla td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding-left: 15px;
+    }
+    .tabla td::before {
+        content: attr(data-label) ": ";
+        font-weight: bold;
+        flex: 1;
+        color: #555;
+    }
+    .tabla td {
+        flex: 2;
+    }
+
+    /* Acciones en mobile */
+    .acciones {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+    .acciones a {
+        flex: 1 1 48%;
+        text-align: center;
+        font-size: 16px;
+    }
 }
