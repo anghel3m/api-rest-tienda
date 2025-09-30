@@ -12,7 +12,7 @@ COPY config/ca.pem /etc/ssl/certs/ca.pem
 RUN a2enmod rewrite
 
 # Configurar DocumentRoot en Apache a /var/www/html/public
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+#RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
 # Configurar Apache en puerto 8080
 RUN echo "Listen 8080" > /etc/apache2/ports.conf
