@@ -1,23 +1,23 @@
-# Imagen base con PHP y Apache
 FROM php:8.2-apache
 
 # Instalar extensiones necesarias
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copiar archivos de tu app al contenedor
+# Copiar código
 COPY . /var/www/html/
 
-# Copiar certificado SSL para conexión con Aiven
+# Copiar certificado SSL
 COPY config/ca.pem /etc/ssl/certs/ca.pem
 
-# Habilitar mod_rewrite en Apache
+# Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# Configurar Apache para escuchar el puerto asignado por Render
-RUN echo "Listen ${PORT}" > /etc/apache2/ports.conf
+# Configurar Apache en puerto 8080 (Render lo mapeará automáticamente)
+RUN echo "Listen 8080" > /etc/apache2/ports.conf
+ENV APACHE_RUN_PORT=8080
 
-# Exponer ese puerto
-EXPOSE ${PORT}
+# Exponer el puerto
+EXPOSE 8080
 
 # Comando de inicio
 CMD ["apache2-foreground"]
