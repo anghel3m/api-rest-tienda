@@ -8,6 +8,6 @@ if ($_POST) {
     $stmt = $pdo->prepare("INSERT INTO productos (nombre, precio) VALUES (:nombre, :precio)");
     $stmt->execute(['nombre' => $nombre, 'precio' => $precio]);
 
-    header("Location: ../public/index.php");
+    header("Location: ../index.php");
     exit;
 }
