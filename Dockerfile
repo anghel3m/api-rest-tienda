@@ -7,6 +7,8 @@ COPY . /var/www/html/
 
 # Copiar certificado SSL
 COPY config/ca.pem /etc/ssl/certs/ca.pem
+# Copiar archivo .env al contenedor
+COPY .env /var/www/html/.env
 
 # Habilitar mod_rewrite
 RUN a2enmod rewrite
