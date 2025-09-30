@@ -15,6 +15,6 @@ if ($_POST) {
         'id' => $id
     ]);
 
-    header("Location: ../public/index.php");
+    header("Location: ../index.php");
     exit;
 }
