@@ -1,0 +1,3 @@
+config/ca.pem
+.env
+config/database.php
