@@ -1,14 +1,5 @@
 <?php 
 
-/* $env = parse_ini_file(__DIR__ . '/../.env'); */
-
-/* $host = $env['DB_HOST'];
-$port = $env['DB_PORT'];
-$dbname = $env['DB_NAME'];
-$user = $env['DB_USER'];
-$pass = $env['DB_PASS'];
-$caCertPath = __DIR__ . '/../' . $env['DB_SSL_CA']; */
-
 $host = getenv('DB_HOST');
 $port = getenv('DB_PORT');
 $dbname = getenv('DB_NAME');
@@ -16,6 +7,14 @@ $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 $caCertPath = __DIR__ . '/ca.pem';
 
+/* $envPath = __DIR__ . '/../.env';
+ $env = parse_ini_file($envPath);
+    $host = $env['DB_HOST'];
+    $port = $env['DB_PORT'];
+    $dbname = $env['DB_NAME'];
+    $user = $env['DB_USER'];
+    $pass = $env['DB_PASS'];
+    $caCertPath = __DIR__ . '/../' . $env['DB_SSL_CA']; */
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
