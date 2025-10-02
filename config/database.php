@@ -7,14 +7,6 @@ $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 $caCertPath = __DIR__ . '/ca.pem';
 
-/* $envPath = __DIR__ . '/../.env';
- $env = parse_ini_file($envPath);
-    $host = $env['DB_HOST'];
-    $port = $env['DB_PORT'];
-    $dbname = $env['DB_NAME'];
-    $user = $env['DB_USER'];
-    $pass = $env['DB_PASS'];
-    $caCertPath = __DIR__ . '/../' . $env['DB_SSL_CA']; */
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
@@ -26,6 +18,8 @@ try {
     ];
 
     $pdo = new PDO($dsn, $user, $pass, $options);
+
+    return $pdo;
 
 } catch (PDOException $e) {
     die("❌ Error de conexión: " . $e->getMessage());
