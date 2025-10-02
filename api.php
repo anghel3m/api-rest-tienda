@@ -1,21 +1,24 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+require __DIR__ . '/config/database.php';
 
-$requestMethod = $_SERVER["REQUEST_METHOD"];
-$requestUri = explode("/", trim($_SERVER["REQUEST_URI"], "/"));
+header("Content-Type: application/json");
 
-// Detectar recurso
-$resource = $requestUri[1] ?? null; // ejemplo: /api.php/productos
-$id = $requestUri[2] ?? null;
+$method = $_SERVER['REQUEST_METHOD'];
+$request = explode('/', trim($_SERVER['PATH_INFO'] ?? '', '/'));
 
-switch ($resource) {
-    case "productos":
-        require __DIR__ . "/src/productos.php";
-        handleProductos($requestMethod, $id);
-        break;
+$resource = $request[0] ?? null;
+$id = $request[1] ?? null;
 
-    default:
-        http_response_code(404);
-        echo json_encode(["error" => "Recurso no encontrado"]);
-        break;
+if ($resource === "productos") {
+    switch ($method) {
+        case 'GET':
+            require __DIR__ . '/src/productos.php';
+            break;
+        default:
+            http_response_code(405);
+            echo json_encode(["error" => "Método no permitido"]);
+    }
+} else {
+    http_response_code(404);
+    echo json_encode(["error" => "Recurso no encontrado"]);
 }
